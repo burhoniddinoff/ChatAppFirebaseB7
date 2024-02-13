@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/logInScreen">
+
+    <fragment
+        android:id="@+id/chatScreen"
+        android:name="com.example.chatappfirebase.presentation.screens.ChatScreen"
+        android:label="ChatScreen"
+        tools:layout="@layout/screen_chat">
+
+        <argument
+            android:name="data"
+            app:argType="com.example.chatappfirebase.data.UserData" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerScreen"
+        android:name="com.example.chatappfirebase.presentation.screens.RegisterScreen"
+        android:label="RegisterScreen"
+        tools:layout="@layout/screen_register">
+
+        <action
+            android:id="@+id/action_registerScreen_to_userScreen"
+            app:popUpTo="@id/registerScreen"
+            app:popUpToInclusive="true"
+            app:destination="@id/userScreen" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/logInScreen"
+        android:name="com.example.chatappfirebase.presentation.screens.LogInScreen"
+        android:label="LogInScreen"
+        tools:layout="@layout/screen_log_in">
+
+        <action
+            android:id="@+id/action_logInScreen_to_registerScreen"
+            app:destination="@id/registerScreen" />
+        <action
+            android:id="@+id/action_logInScreen_to_userScreen"
+            app:destination="@id/userScreen"
+            app:popUpTo="@id/logInScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/userScreen"
+        android:name="com.example.chatappfirebase.presentation.screens.UserScreen"
+        android:label="screen_user"
+        tools:layout="@layout/screen_user" >
+        <action
+            android:id="@+id/action_userScreen_to_chatScreen"
+            app:destination="@id/chatScreen" />
+    </fragment>
+</navigation>
